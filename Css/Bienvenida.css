@@ -1,0 +1,206 @@
+        /* Estilos globales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(120deg, #5FDAF5, #5F7CF5, #735FF5);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero {
+            text-align: center;
+            max-width: 90%;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 60px;
+            color: #fff;
+            margin-bottom: 20px;
+            animation: bounceIn 1s ease forwards;
+        }
+
+        .logo i {
+            animation: spin 5s linear infinite;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ffffff, #E0FFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .btn-welcome {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #2AF5D7;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-welcome:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            background: #5FDAF5;
+        }
+
+        .btn-welcome i {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-welcome:hover i {
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .btn-welcome {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .logo-container {
+            display: inline-block;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo-animado {
+            height: 160px;
+            transition: transform 0.4s ease, filter 0.3s ease;
+        }
+
+        .logo-container:hover .logo-animado {
+            transform: scale(1.15) rotate(3deg);
+            filter: drop-shadow(0 0 10px #00bfff);
+            cursor: pointer;
+        }
+
+        .logo-container {
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-brillante {
+            height: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Crea el brillo */
+        .logo-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.1) 100%);
+            transform: skewX(-25deg);
+            z-index: 2;
+            transition: all 0.5s;
+        }
+
+        /* Activación al pasar el mouse */
+        .logo-container:hover::before {
+            animation: brilloRecorrido 1s ease-in-out forwards;
+        }
+
+        /* Animación */
+        @keyframes brilloRecorrido {
+            0% {
+                left: -75%;
+            }
+
+            100% {
+                left: 125%;
+            }
+        }
