@@ -148,6 +148,12 @@ body {
     text-align: center;
 }
 
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -162,6 +168,8 @@ body {
         font-size: 15px;
     }
 }
+
+/* Chips seleccionables */
 .chip-container {
     display: flex;
     flex-wrap: wrap;
@@ -177,42 +185,11 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 14px;
-    user-select: none;
-    border: 1px solid transparent;
-}
-
-.chip:hover {
-    background-color: #5FDAF5;
-    color: #000;
-    transform: scale(1.05);
-}
-
-.chip.selected {
-    background-color: #735FF5;
-    color: #fff;
-    border: 1px solid #B1D3F5;
-    transform: scale(1.1);
-}
-.chip-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 8px;
-}
-
-.chip {
-    background-color: #2c2c2c;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 14px;
-    position: relative;
     user-select: none;
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    position: relative;
 }
 
 .chip:hover {
@@ -224,22 +201,93 @@ body {
     background-color: #735FF5;
     color: #fff;
     transform: scale(1.1);
-}
-
-.chip .chip-input {
-    display: none;
 }
 
 .chip::before {
     content: "🔲";
     font-size: 16px;
-    margin-right: 8px;
     display: inline-block;
     vertical-align: middle;
 }
 
 .chip.selected::before {
     content: "✅";
+}
+
+.chip .chip-input {
+    display: none;
+}
+
+/* Mensaje Toast */
+.toast {
+    margin-top: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    animation: fadeInUp 0.5s ease-in-out;
+}
+
+.toast-success {
+    background-color: #0072BC;
+    color: #fff;
+    border-left: 4px solid #5FDAF5;
+}
+
+.toast-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border-left: 4px solid #ff4d4d;
+}
+
+/* Botones de acción */
+.btn-action {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-right: 5px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+    background-color: #5FDAF5;
+    color: black;
+}
+
+.btn-edit:hover {
+    background-color: #735FF5;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c81d3d;
+}
+
+/* Animaciones generales */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 .toast {
     margin-top: 20px;
@@ -265,12 +313,6 @@ body {
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

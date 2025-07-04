@@ -4,14 +4,17 @@ session_start();
 if (!isset($_SESSION['ID_Usuario'])) {
     header("Location: login.php");
     exit();
+
 }
+    
+require_once "../modelos/conexion.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8" />
-    <title>Dashboard - Centro CRC</title>
+    <title>SICC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Font Awesome -->
@@ -28,7 +31,7 @@ if (!isset($_SESSION['ID_Usuario'])) {
 
     <header class="topbar">
         <div class="logo">
-            <i class="fas fa-shield-alt"></i> Centro de Reconocimiento Conductores
+            <i class="fas fa-shield-alt"></i> Sistema Integral de Cartera y Cobranza
         </div>
         <nav class="user-nav">
             <span><i class="fas fa-user-circle"></i> <?= $_SESSION['NombreUsuario'] ?? 'Usuario' ?></span>
@@ -42,18 +45,23 @@ if (!isset($_SESSION['ID_Usuario'])) {
                 <h3><i class="fas fa-tachometer-alt"></i> Panel Principal</h3>
             </div>
             <ul>
-                <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="registrar_cliente.php"><i class="fas fa-id-card"></i> Registrar Cliente</a></li>
-                <li><a href="gestion_pagos.php"><i class="fas fa-money-check-alt"></i> Gestión de Pagos</a></li>
-                <li><a href="reportes.php"><i class="fas fa-chart-line"></i> Reportes</a></li>
-                <li><a href="configuracion.php"><i class="fas fa-cog"></i> Configuración</a></li>
-            </ul>
+    <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
+    <li><a href="registrar_cliente.php"><i class="fas fa-id-card"></i> Registrar Cliente</a></li>
+    <li><a href="gestion_pagos.php"><i class="fas fa-money-check-alt"></i> Gestión de Pagos</a></li>
+    <li><a href="reportes.php"><i class="fas fa-chart-line"></i> Reportes</a></li>
+    <li><a href="configuracion.php"><i class="fas fa-cog"></i> Configuración</a></li>
+
+    <!-- Mostrar solo si es administrador -->
+    <?php if (isset($_SESSION['NivelRol']) && $_SESSION['NivelRol'] == 1): ?>
+        <li><a href="gestion_escuelas.php"><i class="fas fa-school"></i> Gestionar Escuelas</a></li>
+    <?php endif; ?>
+</ul>
         </aside>
 
         <section class="content">
             <div class="welcome-box">
-                <h1>¡Bienvenido al Sistema CRC!</h1>
-                <p>Selecciona una opción del menú lateral para comenzar.</p>
+                <h1>¡Bienvenido al Sistema Integral de Cartera y Cobranza!</h1>
+                <STRONg><p>SICC.</p></STRONg>
             </div>
 
             <div class="cards">

@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($usuario && password_verify($contrasena, $usuario['contrasena'])) {
         session_regenerate_id(true);
         $_SESSION['ID_Usuario'] = $usuario['ID_Usuario'];
-        $_SESSION['Nivel_rol'] = $usuario['Nivel_rol'];
+        $_SESSION['NivelRol'] = $usuario['NivelRol'];
         $_SESSION['NombreUsuario'] = $usuario['Nombre_usuario'];
         $_SESSION['EmailUsuario'] = $usuario['email'];
 

@@ -26,9 +26,9 @@
 
             <form method="post" action="guardar_cliente.php">
                 <div class="form-grid">
-                    <!-- Cédula -->
+                    <!-- Cédula Cliente -->
                     <div class="input-group">
-                        <label for="cedula_cliente">Cédula</label>
+                        <label for="cedula_cliente">Cédula Cliente</label>
                         <i class="fas fa-id-badge input-icon"></i>
                         <input type="text" id="cedula_cliente" name="cedula_cliente" placeholder="Ej: 1010101010" required>
                     </div>
@@ -74,13 +74,28 @@
                             $stmt = $conn->query("SELECT id_categoria, descripcion FROM tbl_categoria ORDER BY descripcion ASC");
                             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                 echo "
-            <div class='chip' data-value='{$row['id_categoria']}' onclick=\"toggleCategoria(this)\">
-                {$row['descripcion']}
-                <input type='checkbox' name='categorias[]' value='{$row['id_categoria']}' class='chip-input'>
-            </div>";
+                                <div class='chip' data-value='{$row['id_categoria']}' onclick=\"toggleCategoria(this)\">
+                                    {$row['descripcion']}       
+                                    <input type='checkbox' name='categorias[]' value='{$row['id_categoria']}' class='chip-input'>
+                                </div>";                 
                             }
                             ?>
                         </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Tipo de Tramite</label>
+                        <i class="fas fa-car input-icon"></i>
+                        <div class="chip-container" id="categorias-chip">
+                        <?php
+                            $stmt = $conn->query("SELECT Id_TipoTramite, Tramite FROM tbl_TipoTramite ORDER BY Tramite ASC");
+                                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                                    echo "
+                            <div class='chip' data-value='{$row['Id_TipoTramite']}' onclick=\"toggleTramite(this)\">
+                                {$row['Tramite']}       
+                                <input type='checkbox' name='TipoTramite[]' value='{$row['Id_TipoTramite']}' class='chip-input'>
+                            </div>";
+                            }
+                            ?>
                     </div>
 
                     <div class="form-footer">
@@ -100,13 +115,18 @@
         </div>
     </div>
     <script>
-        function toggleCategoria(element) {
-            element.classList.toggle("selected");
+    function toggleCategoria(element) {
+        element.classList.toggle("selected");
+        const checkbox = element.querySelector(".chip-input");
+        checkbox.checked = element.classList.contains("selected");
+    }
 
-            const checkbox = element.querySelector(".chip-input");
-            checkbox.checked = element.classList.contains("selected");
-        }
-    </script>
+    function toggleTramite(element) {
+        element.classList.toggle("selected");
+        const checkbox = element.querySelector(".chip-input");
+        checkbox.checked = element.classList.contains("selected");
+    }
+</script>
 </body>
 
 </html>
