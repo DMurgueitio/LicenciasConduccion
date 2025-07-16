@@ -7,10 +7,8 @@
     <title>Registrar Cliente - CRC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Estilos -->
     <link rel="stylesheet" href="../css/registrar_cliente.css">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -26,29 +24,25 @@
 
             <form method="post" action="guardar_cliente.php">
                 <div class="form-grid">
-                    <!-- Cédula Cliente -->
                     <div class="input-group">
                         <label for="cedula_cliente">Cédula Cliente</label>
                         <i class="fas fa-id-badge input-icon"></i>
                         <input type="text" id="cedula_cliente" name="cedula_cliente" placeholder="Ej: 1010101010" required>
                     </div>
 
-                    <!-- Nombres y Apellidos -->
                     <div class="input-group">
                         <label for="apellidos_nombre">Nombres y Apellidos</label>
                         <i class="fas fa-user input-icon"></i>
-                        <input type="text" id="apellidos_nombre" name="apellidos_nombre" placeholder="Ej: Juan Pérez" required>
+                        <input type="text" id="apellidos_nombre" name="apellidos_nombre" placeholder="Ej: Juan Pérez" required onblur="this.value = this.value.toUpperCase();">
                     </div>
 
 
-                    <!-- Teléfono -->
                     <div class="input-group">
                         <label for="telefono">Teléfono</label>
                         <i class="fas fa-phone input-icon"></i>
                         <input type="text" id="telefono" name="telefono" placeholder="Ej: 3101234567">
                     </div>
 
-                    <!-- Escuela -->
                     <div class="input-group">
                         <label for="id_escuela">Escuela de Conducción</label>
                         <i class="fas fa-school input-icon"></i>
@@ -65,7 +59,6 @@
                         </select>
                     </div>
 
-                    <!-- Selección múltiple de Categorías -->
                     <div class="input-group">
                         <label>Categorías de Licencia</label>
                         <i class="fas fa-car input-icon"></i>
@@ -77,7 +70,7 @@
                                 <div class='chip' data-value='{$row['id_categoria']}' onclick=\"toggleCategoria(this)\">
                                     {$row['descripcion']}       
                                     <input type='checkbox' name='categorias[]' value='{$row['id_categoria']}' class='chip-input'>
-                                </div>";                 
+                                </div>";
                             }
                             ?>
                         </div>
@@ -85,17 +78,17 @@
                     <div class="input-group">
                         <label>Tipo de Tramite</label>
                         <i class="fas fa-car input-icon"></i>
-                        <div class="chip-container" id="categorias-chip">
-                        <?php
+                        <div class="chip-container" id="tipotramite-chip"> <?php
                             $stmt = $conn->query("SELECT Id_TipoTramite, Tramite FROM tbl_TipoTramite ORDER BY Tramite ASC");
-                                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                                    echo "
-                            <div class='chip' data-value='{$row['Id_TipoTramite']}' onclick=\"toggleTramite(this)\">
-                                {$row['Tramite']}       
-                                <input type='checkbox' name='TipoTramite[]' value='{$row['Id_TipoTramite']}' class='chip-input'>
-                            </div>";
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                echo "
+                                <div class='chip' data-value='{$row['Id_TipoTramite']}' onclick=\"toggleTramite(this)\">
+                                    {$row['Tramite']}       
+                                    <input type='checkbox' name='TipoTramite[]' value='{$row['Id_TipoTramite']}' class='chip-input'>
+                                </div>";
                             }
                             ?>
+                        </div>
                     </div>
 
                     <div class="form-footer">
@@ -111,22 +104,22 @@
                             <?php unset($_SESSION['mensaje']); ?>
                         <?php endif; ?>
                     </div>
-            </form>
+                </div> </form>
         </div>
     </div>
     <script>
-    function toggleCategoria(element) {
-        element.classList.toggle("selected");
-        const checkbox = element.querySelector(".chip-input");
-        checkbox.checked = element.classList.contains("selected");
-    }
+        function toggleCategoria(element) {
+            element.classList.toggle("selected");
+            const checkbox = element.querySelector(".chip-input");
+            checkbox.checked = element.classList.contains("selected");
+        }
 
-    function toggleTramite(element) {
-        element.classList.toggle("selected");
-        const checkbox = element.querySelector(".chip-input");
-        checkbox.checked = element.classList.contains("selected");
-    }
-</script>
+        function toggleTramite(element) {
+            element.classList.toggle("selected");
+            const checkbox = element.querySelector(".chip-input");
+            checkbox.checked = element.classList.contains("selected");
+        }
+    </script>
 </body>
 
 </html>

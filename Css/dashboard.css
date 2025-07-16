@@ -208,7 +208,7 @@ body {
 
 .card p {
     font-size: 14px;
-    color: #bbb;
+    color: #00ff22;
 }
 
 /* Gráficos */
@@ -297,13 +297,13 @@ body {
 
 .card p {
     font-size: 14px;
-    color: #bbb;
+    color: hsl(114, 100%, 50%);
 }
 
 .card ul {
     list-style: none;
     padding-left: 0;
-    color: #ccc;
+    color: hsl(114, 100%, 50%);
 }
 
 .card li {
@@ -342,4 +342,50 @@ body {
 
 .btn-export:hover i {
     transform: scale(1.1);
+}
+
+.charts-row {
+    display: flex;
+    flex-wrap: wrap; /* Para que sea responsivo */
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.chart-box {
+    flex: 1 1 calc(33% - 15px); /* Tres por fila con espacio */
+    min-width: 280px; /* Evita que se hagan demasiado pequeños */
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+@media (max-width: 1100px) {
+    .chart-box {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .chart-box {
+        flex: 1 1 100%;
+    }
+}
+.btn-export {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-export:hover {
+    background-color: #218838;
 }
